@@ -74,57 +74,46 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 __webpack_require__(1);
 
+var _coin = __webpack_require__(9);
+
+var _furry = __webpack_require__(10);
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Furry = function Furry() {
-    _classCallCheck(this, Furry);
-
-    this.x = 0;
-    this.y = 0;
-    this.direction = 'right';
-};
-
-var Coin = function Coin() {
-    _classCallCheck(this, Coin);
-
-    this.x = Math.floor(Math.random() * 10);
-    this.y = Math.floor(Math.random() * 10);
-};
 
 var Game = function () {
     function Game() {
         _classCallCheck(this, Game);
 
         this.board = document.querySelectorAll('#board div');
-        this.furry = new Furry();
-        this.coin = new Coin();
+        this.furry = new _furry.Furry();
+        this.coin = new _coin.Coin();
         this.score = 0;
         this.startGame();
     }
 
     _createClass(Game, [{
-        key: 'index',
+        key: "index",
         value: function index(x, y) {
             return x + y * 10;
         }
     }, {
-        key: 'showFurry',
+        key: "showFurry",
         value: function showFurry() {
             this.hideVisibleFurry();
             this.board[this.index(this.furry.x, this.furry.y)].classList.add('furry');
         }
     }, {
-        key: 'hideVisibleFurry',
+        key: "hideVisibleFurry",
         value: function hideVisibleFurry() {
             document.querySelector('.furry') ? document.querySelector('.furry').classList.remove('furry') : 0;
         }
     }, {
-        key: 'showCoin',
+        key: "showCoin",
         value: function showCoin() {
             this.board[this.index(this.coin.x, this.coin.y)].classList.add('coin');
         }
     }, {
-        key: 'moveFurry',
+        key: "moveFurry",
         value: function moveFurry() {
 
             if (this.furry.direction === "right") {
@@ -141,18 +130,18 @@ var Game = function () {
             this.checkCoinCollision();
         }
     }, {
-        key: 'checkCoinCollision',
+        key: "checkCoinCollision",
         value: function checkCoinCollision() {
             if (this.furry.x === this.coin.x && this.furry.y === this.coin.y) {
                 document.querySelector('.coin').classList.remove('coin');
                 this.score++;
                 document.querySelector('#score strong').innerText = this.score;
-                this.coin = new Coin();
+                this.coin = new _coin.Coin();
                 this.showCoin();
             }
         }
     }, {
-        key: 'turnFurry',
+        key: "turnFurry",
         value: function turnFurry(e) {
             switch (e.which) {
                 case 37:
@@ -170,7 +159,7 @@ var Game = function () {
             }
         }
     }, {
-        key: 'gameOver',
+        key: "gameOver",
         value: function gameOver() {
             if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9) {
                 clearInterval(this.idSetinterval);
@@ -182,7 +171,7 @@ var Game = function () {
             }
         }
     }, {
-        key: 'startGame',
+        key: "startGame",
         value: function startGame() {
             var _this = this;
 
@@ -830,6 +819,47 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Coin = exports.Coin = function Coin() {
+    _classCallCheck(this, Coin);
+
+    this.x = Math.floor(Math.random() * 10);
+    this.y = Math.floor(Math.random() * 10);
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Furry = exports.Furry = function Furry() {
+    _classCallCheck(this, Furry);
+
+    this.x = 0;
+    this.y = 0;
+    this.direction = 'right';
+};
 
 /***/ })
 /******/ ]);

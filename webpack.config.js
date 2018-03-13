@@ -7,7 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.js'
   },
-    watch: true,
     module: {
         loaders: [{
             test: /\.js$/,
